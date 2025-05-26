@@ -1,22 +1,13 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input, Row, Divider } from 'antd';
+import { connect } from 'react-redux';
 
 import {
     GooglePlusOutlined,
     FacebookOutlined
 } from '@ant-design/icons';
 
-export default function LoginCyberBugs() {
-
-    function handleFinish(value) {
-        // executeLogin({
-        //     data: value,
-        // });
-        console.log(value.username);
-        console.log(value.password)
-
-    }
-
+function LoginCyberBugs(props) {
     return (
         <Form
             name="basic"
@@ -28,7 +19,7 @@ export default function LoginCyberBugs() {
                 padding: '24px', // Khoảng cách nội dung với viền
             }}
             initialValues={{ remember: true }}
-            onFinish={handleFinish}
+            onFinish={props.doLogin}
             // onFinishFailed={onFinishFailed}
             autoComplete="off"
 
@@ -69,3 +60,23 @@ export default function LoginCyberBugs() {
         </Form>
     )
 }
+
+// const mapFormikToProps
+
+// Ham gui du lieu len store
+const mapDispatchToProps = (dispatch) => {
+    return {
+        doLogin: (value) => {
+            let action = {
+                type: "USER_SIGIN_API",
+                value
+            }
+
+            // Dung ham dispatch
+            dispatch(action)
+        }
+    }
+}
+
+
+export default connect(null, mapDispatchToProps)(LoginCyberBugs)

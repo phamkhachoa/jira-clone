@@ -22,7 +22,7 @@ export const UserLoginTemplate = ({ children }) => {
                 }}
             >
                 <img
-                    src='./img/bookingTicket/bgmovie.jpg'
+                    src='./img/bookingTicket/jira.png'
                     style={{
                         width: '100%',
                         height: '100%',
