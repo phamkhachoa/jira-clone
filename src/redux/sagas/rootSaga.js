@@ -4,6 +4,6 @@ import * as Cyberbugs from "./Cyberbugs/UserCyberbugsSaga";
 
 export function* rootSaga() {
     yield all([
-        Cyberbugs.theoDoiSignin()
+        Cyberbugs.theoDoiSignin(),
     ]);
 }

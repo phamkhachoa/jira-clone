@@ -7,18 +7,19 @@ import { DatePicker } from 'antd';
 
 // setup redux
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import store from './redux/configStore'
+import LoadingComponent from './components/GlobalSetting/LoadingComponent';
+import { BrowserRouter } from 'react-router-dom';
 
-import rootReducer from './redux/rootReducer';
-
-const store = createStore(rootReducer);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Provider store={store}>
-
-    <App />
-  </Provider>
+  <BrowserRouter>
+    <Provider store={store}>
+      <LoadingComponent />
+      <App />
+    </Provider>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

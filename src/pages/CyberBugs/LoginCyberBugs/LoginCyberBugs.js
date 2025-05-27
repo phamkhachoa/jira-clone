@@ -1,13 +1,27 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input, Row, Divider } from 'antd';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import {
     GooglePlusOutlined,
     FacebookOutlined
 } from '@ant-design/icons';
+import { signinCyberbugAction } from '../../../redux/actions/CyberBugsActions';
 
-function LoginCyberBugs(props) {
+export default function LoginCyberBugs(props) {
+
+    const navigate = useNavigate()
+
+    // Cach 2 su dung usrDispatch
+    let dispatch = useDispatch();
+
+    const doLogin = (value) => {
+        console.log(value)
+        // This action will be intercepted by Redux Saga
+        dispatch(signinCyberbugAction(value.username, value.password, navigate))
+    }
+
     return (
         <Form
             name="basic"
@@ -19,7 +33,7 @@ function LoginCyberBugs(props) {
                 padding: '24px', // Khoảng cách nội dung với viền
             }}
             initialValues={{ remember: true }}
-            onFinish={props.doLogin}
+            onFinish={doLogin}
             // onFinishFailed={onFinishFailed}
             autoComplete="off"
 
@@ -61,22 +75,29 @@ function LoginCyberBugs(props) {
     )
 }
 
+// export default LoginCyberBugs;
 // const mapFormikToProps
 
-// Ham gui du lieu len store
-const mapDispatchToProps = (dispatch) => {
-    return {
-        doLogin: (value) => {
-            let action = {
-                type: "USER_SIGIN_API",
-                value
-            }
-
-            // Dung ham dispatch
-            dispatch(action)
-        }
-    }
-}
+// Map state to props to get loading and error states
+// const mapStateToProps = (state) => {
+//     return {
+//         user: state.user.user,
+//         loading: state.user.loading,
+//         error: state.user.error
+//     }
+// }
 
 
-export default connect(null, mapDispatchToProps)(LoginCyberBugs)
+// Cach 1 su dung voi class component
+// Map dispatch to props
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         doLogin: (value) => {
+//             console.log(value)
+//             // This action will be intercepted by Redux Saga
+//             dispatch(signinCyberbugAction(value.username, value.password))
+//         }
+//     }
+// }
+
+// export default connect(null, mapDispatchToProps)(LoginCyberBugs)
