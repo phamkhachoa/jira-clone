@@ -1,0 +1,76 @@
+.searchContainer {
+    max-width: 200px;
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 5px 10px;
+    transition: border-color 0.2s ease;
+}
+
+/* Highlight container border when input is focused */
+.searchContainer:focus-within {
+    border-color: #007BFF;
+    /* or any color you prefer */
+}
+
+.lineSearch {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.searchInput {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 12px;
+    border: none;
+    outline: none;
+    /* prevent default blue border */
+    box-sizing: border-box;
+}
+
+.avatarRow {
+    display: flex;
+    gap: 10px;
+    /* spacing between avatars */
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+    position: relative;
+    margin-left: -15px;
+    /* tạo hiệu ứng chồng */
+    transition: all 0.2s ease;
+    z-index: 1;
+}
+
+.avatar:first-child {
+    margin-left: 0;
+}
+
+/* Khi hover vào avatar */
+.avatar:hover {
+    transform: scale(1.2);
+    z-index: 10;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.groups {
+    display: flex;
+}
+
+.group {
+    background-color: rgb(246, 238, 238);
+    height: 800px;
+    flex: 1;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-y: auto;
+}

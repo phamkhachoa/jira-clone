@@ -4,6 +4,8 @@ import { UserLoginTemplate } from './templates/HomeTemplate/UserLoginTemplate'
 import LoginCyberBugs from './pages/CyberBugs/LoginCyberBugs/LoginCyberBugs';
 import Home from './pages/CyberBugs/ProjectCyberBugs/Home';
 import { CyberbugsTemplate } from './templates/HomeTemplate/CyberbugsTemplate';
+import CreateProject from './pages/CyberBugs/ProjectCyberBugs/CreateProject';
+import ListProject from './pages/CyberBugs/ProjectCyberBugs/ListProject';
 
 
 export default function App() {
@@ -27,6 +29,23 @@ export default function App() {
         element={
           <CyberbugsTemplate>
             <Home />
+          </CyberbugsTemplate>
+        }
+      />
+      <Route
+        path="/createProject"
+        element={
+          <CyberbugsTemplate>
+            <CreateProject />
+          </CyberbugsTemplate>
+        }
+      />
+
+      <Route
+        path="/listProject"
+        element={
+          <CyberbugsTemplate>
+            <ListProject />
           </CyberbugsTemplate>
         }
       />

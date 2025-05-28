@@ -1,92 +1,44 @@
 import { Route } from "react-router-dom";
-import { Menu } from 'antd';
+import { Menu, MenuItem } from 'antd';
 import { AppstoreOutlined, MailOutlined, SettingOutlined, PieChartOutlined, SearchOutlined } from '@ant-design/icons';
-
-// export const CyberbugsTemplate = (props) => {
-//     const { Component, ...restParam } = props;
-
-//     return <Route {...restParam} render={(propsRoute) => {
-//         return <>
-//             <div style={{
-//                 height: "100vh",
-//                 backgroundColor: "rgb(7, 71, 166)",
-//                 width: "100"
-//             }} >
-//             </div>
-//             <Component {...propsRoute} />
-//         </>
-//     }} />
-// }
+import { useNavigate } from "react-router";
 
 const items: MenuItem[] = [
     {
+        key: '/home',
+        label: 'Trang chủ',
+    },
+    {
         key: 'sub1',
-        label: 'Navigation One',
+        label: 'Projects Management',
         icon: <MailOutlined />,
         children: [
             {
-                key: 'g1',
-                label: 'Item 1',
-                type: 'group',
-                children: [
-                    { key: '1', label: 'Option 1' },
-                    { key: '2', label: 'Option 2' },
-                ],
+                key: "/createProject",
+                label: 'Tạo mới Project',
+                routePath: "/createProject"
+            }, {
+                key: "/listProject",
+                label: 'Danh sách Project',
+                route: "/listProject"
             },
             {
-                key: 'g2',
-                label: 'Item 2',
-                type: 'group',
-                children: [
-                    { key: '3', label: 'Option 3' },
-                    { key: '4', label: 'Option 4' },
-                ],
-            },
+                key: "/home",
+                label: 'Danh sách Project',
+                route: "/listProject"
+            }
         ],
-    },
-    {
-        key: 'sub2',
-        label: 'Navigation Two',
-        icon: <AppstoreOutlined />,
-        children: [
-            { key: '5', label: 'Option 5' },
-            { key: '6', label: 'Option 6' },
-            {
-                key: 'sub3',
-                label: 'Submenu',
-                children: [
-                    { key: '7', label: 'Option 7' },
-                    { key: '8', label: 'Option 8' },
-                ],
-            },
-        ],
-    },
-    {
-        type: 'divider',
-    },
-    {
-        key: 'sub4',
-        label: 'Navigation Three',
-        icon: <SettingOutlined />,
-        children: [
-            { key: '9', label: 'Option 9' },
-            { key: '10', label: 'Option 10' },
-            { key: '11', label: 'Option 11' },
-            { key: '12', label: 'Option 12' },
-        ],
-    },
-    {
-        key: 'grp',
-        label: 'Group',
-        type: 'group',
-        children: [
-            { key: '13', label: 'Option 13' },
-            { key: '14', label: 'Option 14' },
-        ],
-    },
+    }
 ];
 
 export const CyberbugsTemplate = ({ children }) => {
+
+    let navigate = useNavigate();
+
+    const onClick = (props) => {
+        console.log(props); // This will now log the route
+        navigate(props.key); // Navigate to the route
+    }
 
     return <>
         <div style={{ display: "flex" }}>
@@ -100,9 +52,10 @@ export const CyberbugsTemplate = ({ children }) => {
                 <SearchOutlined style={{ fontSize: "40px", display: "block", paddingTop: "20px", color: "white" }} />
             </div>
             <Menu
+                onClick={onClick}
                 style={{ width: 256, paddingTop: "20px" }}
                 defaultSelectedKeys={['1']}
-                defaultOpenKeys={['sub1']}
+                defaultOpenKeys={['/createProject']}
                 mode="inline"
                 items={items}
             />
