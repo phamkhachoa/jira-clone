@@ -1,18 +1,30 @@
+import axios from 'axios';
+import { DOMAIN_CYBERBUG } from "../util/constants/settingSyctem";
 
-import { DOMAIN_CYBERBUG } from "../util/constants/settingSyctem"
-import axios, { isCancel, AxiosError } from 'axios';
+const axiosInstance = axios.create({
+    baseURL: DOMAIN_CYBERBUG,
+});
+
+axiosInstance.interceptors.request.use(config => {
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+}, error => {
+    return Promise.reject(error);
+});
 
 export const cyberbugsService = {
     signinCyberBugs: (userLogin) => {
-        // return Axios({
-        //     url: `${DOMAIN_CYBERBUG}/users/signin`,
-        //     method: "POST",
-        //     data: userLogin
-        // })
-        return axios({
-            method: 'post',
-            url: `${DOMAIN_CYBERBUG}/Users/signin`,
-            data: userLogin
-        });
+        return axios.post(`${DOMAIN_CYBERBUG}/Users/signin`, userLogin);
+    },
+
+    getAllProjectCategory: () => {
+        return axiosInstance.get('/ProjectCategory');
+    },
+
+    createProject: (data) => {
+        return axiosInstance.post('/Project/createProject', data);
     }
-}
+};

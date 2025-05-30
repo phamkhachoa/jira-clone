@@ -21,11 +21,6 @@ const items: MenuItem[] = [
                 key: "/listProject",
                 label: 'Danh sách Project',
                 route: "/listProject"
-            },
-            {
-                key: "/home",
-                label: 'Danh sách Project',
-                route: "/listProject"
             }
         ],
     }
